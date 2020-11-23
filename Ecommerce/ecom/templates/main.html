@@ -23,6 +23,9 @@
 <!-- Optional JavaScript -->
 <script>
     const user = '{{request.user}}'
+    const shipping = '{{order.shipping}}'
+    const total = '{{order.get_cart_total}}'
+    const storeUrl = '{% url "store" %}'
 
     function getToken(name) {
         let cookieValue = null;

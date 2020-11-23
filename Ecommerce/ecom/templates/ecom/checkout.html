@@ -25,7 +25,7 @@
         </ul>
     </div>
     <div class="col-md-8 order-md-1">
-        <form novalidate>
+        <form id="form">
             <div id="user-info">
 
                 <div class="form-row">
@@ -47,12 +47,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity" name="city" placeholder="Nairobi, Kampala, Dar-es-Salaam">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Nairobi, Kampala, Dar-es-Salaam">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputState">State</label>
-                        <select id="inputState" class="form-control" name="state">
+                        <label for="state">State</label>
+                        <select id="state" class="form-control" name="state">
                   <option selected>Kenya</option>
                   <option>United States</option>
                   <option>Canada</option>
@@ -60,16 +60,16 @@
                 </select>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip" name="zipcode" placeholder="Zipcode...">
+                        <label for="zipcode">Zip</label>
+                        <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Zipcode...">
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success btn-block">Submit</button>
+            <button type="submit" class="btn btn-success btn-block" id="checkout-btn">Submit</button>
         </form>
-        <div hidden>
+        <div id="payment-info" hidden>
             <small>Payment Options</small>
-            <button type="button" name="" id="" class="btn btn-primary btn-block ">Make Payment</button>
+            <button type="button" name="" id="payment-btn" class="btn btn-primary btn-block ">Make Payment</button>
         </div>
     </div>
 </div>{% endblock content %}

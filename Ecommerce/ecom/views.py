@@ -2,6 +2,7 @@ import json
 from django.http.response import JsonResponse
 from django.shortcuts import render
 from .models import *
+import datetime
 # Create your views here.
 def store(request):
     products = Product.objects.all()
@@ -11,7 +12,7 @@ def store(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        order = {'get_cart_items': 0, 'get_cart_total':0}
+        order = {'get_cart_items': 0, 'get_cart_total':0, 'shipping':False}
         items = []
         cartItems = order['get_cart_items']
     context = {'items':items, 'products':products, 'cartItems':cartItems}
@@ -24,7 +25,7 @@ def cart(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        order = {'get_cart_items': 0, 'get_cart_total':0}
+        order = {'get_cart_items': 0, 'get_cart_total':0, 'shipping':False}
         items = []
         cartItems = order['get_cart_items']
     context = {'items':items, 'order':order, 'cartItems':cartItems}
@@ -37,10 +38,10 @@ def checkout(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
-        order = {'get_cart_items': 0, 'get_cart_total':0}
+        order = {'get_cart_items': 0, 'get_cart_total':0, 'shipping':False}
         items = []
         cartItems = order['get_cart_items']
-    context = {'items':items, 'order':order,}
+    context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, 'ecom/checkout.html', context)
 
 def updateCart(request):
@@ -61,3 +62,28 @@ def updateCart(request):
         orderItem.delete()
 
     return JsonResponse('cart updated', safe=False)    
+
+def processOrder(request):
+    data = json.loads(request.body)
+    transaction_id = datetime.datetime.now().timestamp()
+
+    if request.user.is_authenticated:
+        total = float(data['form']['total'])
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order.transaction_id = transaction_id
+
+        if total == float(order.get_cart_total):
+            order.complete = True
+        order.save()
+
+        if order.shipping != False:
+            ShippingAddress.objects.create(
+                customer=customer,
+                order=order,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                state=data['shipping']['state'],
+                zipcode=data['shipping']['zipcode'],
+            )
+    return JsonResponse('Payment successfull', safe=False)
