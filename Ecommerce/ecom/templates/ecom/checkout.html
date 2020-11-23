@@ -1,38 +1,24 @@
 {% extends "main.html" %} {% block content %}
 <div class="row">
-    <div class="col-md-4 order-md-2">
+    <div class="col-md-4 order-md-2 mb-3">
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between list-group-item-secondary align-items-center h3">
                 Your Cart
-                <span class="badge badge-primary badge-pill">25</span>
+                <span class="badge badge-primary badge-pill">{{order.get_cart_items}}</span>
             </li>
+            {% for item in items %}
             <li class="list-group-horizontal list-group-item py-2">
                 <div class="d-flex align-items-center">
-                    Cras justo odio
-                    <span class="badge badge-primary badge-pill">14</span>
-                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
+                    {{item.product.name}}
+                    <span class="badge badge-primary badge-pill">{{item.quantity}}</span>
+                    <div class="h4 ml-auto"><span class="badge badge-light ">${{item.get_total|floatformat:2}}</span></div>
                 </div>
             </li>
-            <li class="list-group-horizontal list-group-item py-2">
-                <div class="d-flex align-items-center">
-                    Cras justo odio
-                    <span class="badge badge-primary badge-pill">14</span>
-                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
-
-                </div>
-            </li>
-            <li class="list-group-horizontal list-group-item py-2">
-                <div class="d-flex align-items-center">
-                    Cras justo odio
-                    <span class="badge badge-primary badge-pill">14</span>
-                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
-
-                </div>
-            </li>
+            {% endfor %}
             <li class="list-group-horizontal list-group-item list-group-item-secondary h5 py-2">
                 <div class="d-flex align-items-center">
                     Total:
-                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
+                    <div class="h4 ml-auto"><span class="badge badge-light ">${{order.get_cart_total|floatformat:2}}</span></div>
 
                 </div>
             </li>
