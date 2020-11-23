@@ -7,12 +7,15 @@ for (let index = 0; index < updateBtns.length; index++) {
         const action = this.dataset.action
         if (user == 'AnonymousUser'){
             console.log('Not Logged in');
+            // guestCartOrder(productId, action)
         }else{
             updateCartOrder(productId, action)
         }
     })
 }
-
+// function guestCartOrder(productId, action){
+//     console.log('ProductId:', productId, 'Action:', action);
+// }
 function updateCartOrder(productId, action){
     console.log('productId', productId, 'action:',action);
 
