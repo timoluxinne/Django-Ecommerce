@@ -1,4 +1,89 @@
-{% extends 'main.html' %} {% block content %}
-<div>
-    <h1>Checkout</h1>
-</div> {% endblock content %}
+{% extends "main.html" %} {% block content %}
+<div class="row">
+    <div class="col-md-4 order-md-2">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between list-group-item-secondary align-items-center h3">
+                Your Cart
+                <span class="badge badge-primary badge-pill">25</span>
+            </li>
+            <li class="list-group-horizontal list-group-item py-2">
+                <div class="d-flex align-items-center">
+                    Cras justo odio
+                    <span class="badge badge-primary badge-pill">14</span>
+                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
+                </div>
+            </li>
+            <li class="list-group-horizontal list-group-item py-2">
+                <div class="d-flex align-items-center">
+                    Cras justo odio
+                    <span class="badge badge-primary badge-pill">14</span>
+                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
+
+                </div>
+            </li>
+            <li class="list-group-horizontal list-group-item py-2">
+                <div class="d-flex align-items-center">
+                    Cras justo odio
+                    <span class="badge badge-primary badge-pill">14</span>
+                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
+
+                </div>
+            </li>
+            <li class="list-group-horizontal list-group-item list-group-item-secondary h5 py-2">
+                <div class="d-flex align-items-center">
+                    Total:
+                    <div class="h4 ml-auto"><span class="badge badge-light ">$14.00</span></div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8 order-md-1">
+        <form novalidate>
+            <div id="user-info">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Email</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name...">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email...">
+                    </div>
+                </div>
+            </div>
+            <div id="shipping-info">
+                <h3 class="border-bottom pb-2">Shipping Information</h3>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St...">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" id="inputCity" name="city" placeholder="Nairobi, Kampala, Dar-es-Salaam">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" class="form-control" name="state">
+                  <option selected>Kenya</option>
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>Morocco</option>
+                </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" id="inputZip" name="zipcode" placeholder="Zipcode...">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Submit</button>
+        </form>
+        <div hidden>
+            <small>Payment Options</small>
+            <button type="button" name="" id="" class="btn btn-primary btn-block ">Make Payment</button>
+        </div>
+    </div>
+</div>{% endblock content %}
